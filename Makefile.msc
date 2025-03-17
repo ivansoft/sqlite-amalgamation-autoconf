@@ -306,6 +306,10 @@ SQLITE3EXEPDB = /pdb:sqlite3sh.pdb
 !ENDIF
 !ENDIF
 
+# on/off sqlite_enable_column_metadata (default: on)
+!IFNDEF METADATA
+METADATA = 1
+!ENDIF
 
 # These are the "standard" SQLite compilation options used when compiling for
 # the Windows platform.
@@ -322,7 +326,9 @@ OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_DBPAGE_VTAB=1
 OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_DBSTAT_VTAB=1
 OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_BYTECODE_VTAB=1
 !ENDIF
+!IF $(METADATA)!=0
 OPT_FEATURE_FLAGS = $(OPT_FEATURE_FLAGS) -DSQLITE_ENABLE_COLUMN_METADATA=1
+!ENDIF
 !ENDIF
 
 # Additional feature-options above and beyond what are normally used can be
